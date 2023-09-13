@@ -8,24 +8,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.fatec.sigvs.model.Catalogo;
-import com.fatec.sigvs.model.IImagemRepository;
 import com.fatec.sigvs.model.IProdutoRepository;
 import com.fatec.sigvs.model.Imagem;
 import com.fatec.sigvs.model.Produto;
 
 @Service
 public class ProdutoServico implements IProdutoServico {
+
 	@Autowired
 	IProdutoRepository repositoryP;
+
 	@Autowired
-	IImagemRepository repositoryI;
+	ImagemServico imagemServico;
 
 	@Override
 	public List<Catalogo> consultaCatalogo() {
 		Catalogo c = null;
-		List<Catalogo> lista = new ArrayList<>();
+		List<Catalogo> lista = new ArrayList<Catalogo>();
 		List<Produto> listaP = repositoryP.findAll();
-		List<Imagem> listaI = repositoryI.findAll();
+		List<Imagem> listaI = imagemServico.getAll();
 		for (Produto p : listaP) {
 			for (Imagem i : listaI) {
 				if (p.getId().equals(i.getId())) {
@@ -47,19 +48,19 @@ public class ProdutoServico implements IProdutoServico {
 	@Override
 	public Optional<Produto> cadastrar(Produto produto) {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.empty();
 	}
 
 	@Override
 	public Optional<Produto> consultarPorId(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.empty();
 	}
 
 	@Override
 	public Optional<Produto> atualizar(Long id, Produto produto) {
 		// TODO Auto-generated method stub
-		return null;
+		return Optional.empty();
 	}
 
 	@Override
