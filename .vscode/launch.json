@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-SigvsApplication<sigvs>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.fatec.sigvs.SigvsApplication",
+            "projectName": "sigvs",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
