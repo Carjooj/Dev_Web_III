@@ -1,27 +1,70 @@
-import { useEffect, useState } from "react";
-
+import { useState, useEffect } from "react";
+import ConverteBase64ToImage from "./ConvertBase64ToImage";
 const ConsultaCatalogo = () => {
   const [produtos, setProdutos] = useState([]);
-  const [erro, setErro] = useState([]);
+  const [erro, setErro] = useState(null);
   useEffect(() => {
     const consulta = async () => {
       try {
         const resposta = await fetch("http://localhost:8080/api/v1/produtos");
-        const dados = await resposta.json();
+        if (!resposta.ok) {
+          throw new Error();
+        }
+        const dados = await resposta.json(); //retorna um array de objetos json
+        //carrega os dados na variavel produto
         setProdutos(dados);
       } catch (error) {
-        setErro(error);
-        console.log(erro);
+        setErro(error.message);
       }
     };
     consulta();
   }, []);
+  const handleVoltar = () => {
+    // Navegar para a rota "/home"
+  };
   return (
-    <div className="Catalogo">
-      <h3>Consulta Catalogo</h3>
-      {JSON.stringify(produtos)}
+    <div>
+      <head>
+        <title>
+          <h3> Consulta Catalogo </h3>
+        </title>
+      </head>
+      <table id="produtos">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Descrição</th>
+            <th>Custo</th>
+            <th>Quant</th>
+            <th>Peça</th>
+          </tr>
+        </thead>
+        <tbody>
+          {produtos.map((produto) => (
+            <tr key={produto.id}>
+              <td>{produto.id}</td>
+              <td>{produto.descricao}</td>
+              <td>{produto.custo}</td>
+              <td>{produto.quantidadeNoEstoque}</td>
+              <td>
+                <img
+                  src={ConverteBase64ToImage(produto.imagem)}
+                  alt="Imagem "
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p></p>
+      <button onClick={handleVoltar}>Voltar</button>
+      <p></p>
+      {erro && (
+        <>
+          <p>Erro na consulta: {erro} </p>{" "}
+        </>
+      )}
     </div>
   );
 };
-
 export default ConsultaCatalogo;

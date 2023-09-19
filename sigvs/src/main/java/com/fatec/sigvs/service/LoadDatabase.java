@@ -39,7 +39,7 @@ public class LoadDatabase {
 			// ****************************************************************
 			// upload - obtem a imagem do c, atribui ao obj imagem e salva no db do servidor
 			// ****************************************************************
-			Path path = Paths.get("/home/carjooj/Documentos/ImagensSIGVS/produto1.jpg");
+			Path path = Paths.get("C:\\Users\\dti\\Downloads\\produto1.jpg");
 			InputStream file = Files.newInputStream(path);
 			byte[] arquivo1 = file.readAllBytes();
 			Imagem imagem = new Imagem();
@@ -50,7 +50,7 @@ public class LoadDatabase {
 			logger.info(">>>>> loaddatabase -> upload de arquivo imagem realizado => " + arquivo1.length);
 			imagemRepository.save(imagem);
 			// ****************************************************************
-			path = Paths.get("/home/carjooj/Documentos/ImagensSIGVS/produto2.jpg");
+			path = Paths.get("C:\\Users\\dti\\Downloads\\produto2.jpg");
 			file = Files.newInputStream(path);
 			byte[] arquivo2 = file.readAllBytes();
 			imagem = new Imagem();
@@ -61,7 +61,7 @@ public class LoadDatabase {
 			logger.info(">>>>> loaddatabase -> upload de arquivo imagem realizado => " + arquivo2.length);
 			imagemRepository.save(imagem);
 			// ****************************************************************
-			path = Paths.get("/home/carjooj/Documentos/ImagensSIGVS/produto3.jpg");
+			path = Paths.get("C:\\Users\\dti\\Downloads\\produto3.jpg");
 			file = Files.newInputStream(path);
 			byte[] arquivo3 = file.readAllBytes();
 			imagem = new Imagem();
